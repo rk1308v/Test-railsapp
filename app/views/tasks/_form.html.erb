@@ -1,0 +1,19 @@
+<h1><b>RLG! Begin!</b></h1>
+
+<%= form_for @task, url: {action: "create"}, html: {class: "form-inline"} do |f| %>
+  <p>
+  	 <%= f.label :project_id %><br>
+	<%#= f.select :project_id, ['option1', 'option2']%>
+	<% projects = Project.where.not(name: [nil, ""]) %>
+	<%= f.select "project_id", options_from_collection_for_select(projects, "id", "name")
+%>
+ </p>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
